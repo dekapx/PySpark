@@ -1,7 +1,13 @@
-# write code to read json file
-import json
+from pyspark.sql import SparkSession
 
-with open('src/chapter02/student-data.json', mode='r') as file:
-    data = json.load(file)
-    for entry in data:
-        print(entry)
+spark = (SparkSession.builder
+         .appName("First Spark application")
+         .getOrCreate())
+
+jsonFile = 'src/chapter02/student-data.json'
+dataframe = (spark.read
+             .option("multiline", "true")
+             .json(jsonFile))
+dataframe.printSchema()
+dataframe.show()
+

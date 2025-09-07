@@ -1,6 +1,14 @@
-import csv
+from pyspark.sql import SparkSession
 
-with open('src/chapter01/data.csv', mode='r') as file:
-    reader = csv.reader(file)
-    for row in reader:
-        print(row)
+spark = (SparkSession.builder
+         .appName("First Spark application")
+         .getOrCreate())
+csvFile = 'src/chapter01/data.csv'
+
+dataframe = (spark.read
+             .option("header", "true")
+             .option("inferSchema", "true")
+             .csv(csvFile))
+dataframe.printSchema()
+dataframe.show()
+

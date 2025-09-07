@@ -4,12 +4,13 @@ spark = (SparkSession.builder
          .appName("First Spark application")
          .getOrCreate())
 
+# Creating DataFrame with colmns and rows with headers
+columns = ["firstname", "lastname", "country", "state"]
 data = [("James", "Smith", "USA", "CA"),
         ("Michael", "Rose", "USA", "NY"),
         ("Robert", "Williams", "USA", "CA"),
-        ("Maria", "Jones", "USA", "FL")
-]
+        ("Maria", "Jones", "USA", "FL")]
 
-df = spark.createDataFrame(data)
-df.printSchema()
-df.show()
+dataframe = spark.createDataFrame(data, schema=columns)
+dataframe.printSchema()
+dataframe.show()
