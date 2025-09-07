@@ -14,7 +14,10 @@ dataframe = (spark.read
 dataframe.printSchema()
 dataframe.show()
 
-dataframe = dataframe.withColumn('FullName', concat(col('first_name'), lit(','), col('last_name')))
+dataframe = dataframe.withColumn('FullName', concat(
+    col('first_name'), 
+    lit(','), 
+    col('last_name'))).select('FullName', 'age', 'city')
 dataframe.printSchema()
 dataframe.show()
 
