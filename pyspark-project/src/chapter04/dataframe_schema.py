@@ -5,6 +5,7 @@ spark = (SparkSession.builder
          .appName("PySparkDemo")
          .getOrCreate())
 
+# define schema
 schema = StructType([
     StructField("firstname", StringType(), True),
     StructField("lastname", StringType(), True),
@@ -13,6 +14,7 @@ schema = StructType([
     StructField("age", IntegerType(), True)
 ])
 
+# create dataframe
 data = [("James", "Smith", "USA", "CA", 30),
         ("Michael", "Rose", "USA", "NY", 40),
         ("Robert", "Williams", "USA", "CA", 50),
@@ -20,3 +22,12 @@ data = [("James", "Smith", "USA", "CA", 30),
 dataframe = spark.createDataFrame(data, schema=schema)
 dataframe.printSchema()
 dataframe.show()
+
+csvFilePath = "src/chapter04/data/people.csv"
+# write data to csv
+dataframe.write.csv(csvFilePath, header=True)
+
+# read data from csv
+csv_df = spark.read.csv(csvFilePath, header=True, schema=schema)
+csv_df.printSchema()
+csv_df.show()
