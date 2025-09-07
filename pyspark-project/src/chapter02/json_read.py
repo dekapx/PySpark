@@ -1,7 +1,7 @@
 from pyspark.sql import SparkSession
 
 spark = (SparkSession.builder
-         .appName("First Spark application")
+         .appName("PySparkDemo")
          .getOrCreate())
 
 jsonFile = 'src/chapter02/student-data.json'

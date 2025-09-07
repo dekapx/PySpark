@@ -1,7 +1,7 @@
 from pyspark.sql import SparkSession
 
 spark = (SparkSession.builder
-         .appName("First Spark application")
+         .appName("PySparkDemo")
          .getOrCreate())
 
 # Creating DataFrame with colmns and rows with headers
