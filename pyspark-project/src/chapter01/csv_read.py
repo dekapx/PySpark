@@ -14,9 +14,9 @@ dataframe = (spark.read
 dataframe.printSchema()
 dataframe.show()
 
-
-
-
+dataframe = dataframe.withColumn('FullName', concat(col('first_name'), lit(','), col('last_name')))
+dataframe.printSchema()
+dataframe.show()
 
 
 
